@@ -1,10 +1,12 @@
+package Exercicio1.Solução2;
+
 /* 
    Implementacao do Jantar dos Filosofos com Semaforo
    PUCRS - Escola Politecnica
    Prof: Fernando Dotti
 */
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
+
 // ============= Filosofo ==============
 class Filosofo extends Thread {
     
@@ -28,21 +30,11 @@ class Filosofo extends Thread {
 		   // pega um garfo
 		   try{g1.acquire();
 		       }catch(InterruptedException ie){}
-			System.out.println(espaco+ i + ": Pegou um ");
-			
-			
-		   
-		
-			  
+   		   System.out.println(espaco+ i + ": Pegou um ");
+		   		   
 		   // pega outro garfo
-		   try{
-			   if(!g2.tryAcquire(1, TimeUnit.NANOSECONDS)){
-					g1.release(); 
-					System.out.println(espaco +i +": Soltou os dois garfos");
-			   }
-			}catch(InterruptedException ie){
-					System.out.println();
-			   }
+		   try{g2.acquire();
+		       }catch(InterruptedException ie){}
 				   
    		   System.out.println(espaco+ i + ": Pegou dois, come ");		   
 		   // come
@@ -61,9 +53,10 @@ class JantaFilosofos {
 		for (int i=0; i< FIL; i++) {
 		   garfo[i]= new Semaphore(1); 
 	    }
-        for (int i = 0; i < FIL; i++) {
+        for (int i = 0; i < FIL-1; i++) {
 			 	 (new Filosofo(i,garfo[i],garfo[(i+1)%(FIL)])).start();	
-		}		
+		}
+		(new Filosofo(FIL-1, garfo[0], garfo[FIL-1])).start(); //filosofo da pá virada
 	}	  
 }
 	
