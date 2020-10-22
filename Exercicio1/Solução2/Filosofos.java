@@ -1,4 +1,4 @@
-package Exercicio1.Solução2;
+
 
 /* 
    Implementacao do Jantar dos Filosofos com Semaforo

@@ -1,4 +1,3 @@
-package Exercicio2;
 
 public class Buffer {
     class Node{
@@ -67,11 +66,11 @@ public class Buffer {
     }
 
     public boolean vazio(){
-        return posDel == posIns;
+        return !cheio && posDel == posIns;
     }
 
     public void remove(){
-        if(posIns == posDel){
+        if(vazio()){
             throw new NullPointerException("Buffer vazio.");
         }else{
             Node aux = root;

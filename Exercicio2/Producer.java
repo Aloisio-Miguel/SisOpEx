@@ -1,4 +1,4 @@
-package Exercicio2;
+
 import java.util.concurrent.Semaphore;
 
 public class Producer extends Thread{

@@ -1,4 +1,4 @@
-package Exercicio1.Solução1;
+
 
 /* 
    Implementacao do Jantar dos Filosofos com Semaforo
@@ -41,16 +41,18 @@ class Filosofo extends Thread {
 			   if(!g2.tryAcquire(1, TimeUnit.NANOSECONDS)){
 					g1.release(); 
 					System.out.println(espaco +i +": Soltou os dois garfos");
+			   }else{
+				   System.out.println(espaco+ i + ": Pegou dois, come ");		   
+				// come
+				// solta garfos
+				g1.release();
+				g2.release();
+
 			   }
 			}catch(InterruptedException ie){
 					System.out.println();
 			   }
 				   
-   		   System.out.println(espaco+ i + ": Pegou dois, come ");		   
-		   // come
-		   // solta garfos
-		   g1.release();
-		   g2.release();
       }
     }
 }
